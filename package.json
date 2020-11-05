@@ -21,6 +21,7 @@
     "express-load": "^1.1.16",
     "method-override": "^3.0.0",
     "mongodb": "^3.6.2",
-    "mongoose": "^5.10.9"
+    "mongoose": "^5.10.9",
+    "mongoose-type-email": "^1.0.13"
   }
 }
