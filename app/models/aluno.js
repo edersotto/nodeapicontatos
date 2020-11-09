@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 require('mongoose-type-email');
 module.exports = function () {
     var schema = mongoose.Schema({
-        
         nome: {
             type: String,
             required: true
@@ -24,7 +23,7 @@ module.exports = function () {
             required: false
         },
         cursos: [{
-            type: mongoose.mongoose.Schema.ObjectId,
+            type: mongoose.Schema.ObjectId,
             ref: 'Curso',
             required: true
         }]
