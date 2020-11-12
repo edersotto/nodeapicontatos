@@ -21,7 +21,7 @@ module.exports = function(app){
     // função que retorna os contatos cadastrados
     controller.listaAlunos = function(req, res) {
         // executa um find para retornar os contatos
-        aluno.find().exec().then(
+        aluno.find().populate('cursos').exec().then(
             // em caso de sucesso
             function(alunos) {
                 res.status(200).json(alunos);
@@ -71,7 +71,7 @@ module.exports = function(app){
         
     controller.obtemAluno = function(req, res) {
         var _id = req.params.id;
-        aluno.findById(_id).exec().then(
+        aluno.findById(_id).populate('cursos').exec().then(
             // sucesso
             function(aluno) {
                 if(!aluno) {

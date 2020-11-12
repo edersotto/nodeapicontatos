@@ -30,8 +30,9 @@ module.exports = function () {
         dataTermino: {
             type: Date,
             required: true,
-            //max: [this.dataInicio > this.dataTermino]
-            min: [this.dataInicio]
+            validate: function dateValidator(value) {
+                return this.dataInicio <= value;
+            }
         }, 
         created: {
             type: Date,
@@ -45,5 +46,5 @@ module.exports = function () {
         }
     });
     
-    return mongoose.model('curso', schema);
+    return mongoose.model('Curso', schema);
 }

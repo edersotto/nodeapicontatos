@@ -7,7 +7,6 @@ module.exports = function () {
         },
         email: {
             type: mongoose.SchemaTypes.Email,
-            ref: 'Intrutor',
             required: true
         },
         created: {
@@ -17,5 +16,5 @@ module.exports = function () {
         }
         
     });
-    return mongoose.model('instrutor', schema);
+    return mongoose.model('Instrutor', schema);
 }
