@@ -34,6 +34,7 @@ module.exports = function () {
                 return this.dataInicio <= value;
             }
         }, 
+        
         created: {
             type: Date,
             default: Date.now,
