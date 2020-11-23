@@ -4,7 +4,7 @@ module.exports = function () {
 
         nome: {
             type: String,
-            required: true
+            required: [true,'O campo nome é obrigatório']
         },
         ativo: {
 			type: Boolean,
@@ -14,27 +14,40 @@ module.exports = function () {
         cargaHoraria: {
             type: Number,
             required: true,
-            enum : [40,80], 
+            validate: {
+                validator: function(value) {
+                    return (value==40) || (value==80);
+                },
+                message: 'A carga horária deve ser 40 ou 80'
+            },
             default: 40 
+            /*
+            enum : {
+                values: ['40','80'], 
+                message: 'A carga horária precisa ser 40 ou 80.'
+            },
+            */
+            
         },
         valor: {
             type: Number,
-            required: true,
-            //min: 99,
-            min: [this.valor >= 99]
+            required: [true, 'O campo valor é obrigatório'],
+            min: [99, 'O valor mínimo é 99'],
         },
         dataInicio: {
             type: Date,
-            required: true,
+            required: [true, 'O campo dataInicio é obrigatório'],
         }, 
         dataTermino: {
             type: Date,
-            required: true,
-            validate: function dateValidator(value) {
-                return this.dataInicio <= value;
+            required: [true, 'O campo dataTermino é obrigatório'],
+            validate: {
+                validator: function(value) {
+                    return this.dataInicio <= value;
+                },
+                message: 'A data de término deve ser maior que a de início'
             }
         }, 
-        
         created: {
             type: Date,
             default: Date.now,
@@ -43,7 +56,7 @@ module.exports = function () {
         instrutor: {
             type: mongoose.Schema.ObjectId,
             ref: 'Instrutor',
-            required: true
+            required: [true, 'É necessário definir um instrutor válido']
         }
     });
     
